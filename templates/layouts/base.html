@@ -1,10 +1,38 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    {% include "includes/headscripts.html"%}
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=UTF-8" /> 
+        <meta name="robots" content="index, follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <body class="container">
+        <title>{% block title %}Almaz Kunpeissov | Software Engineer | Python | Portfolio.{% endblock title %}</title>
+        <meta name="description" content="{% block description %}Portfolio of Almaz Kunpeissov, Python Software Engineer. Python/Django, PostgreSQL, Docker, Redis, Nginx, Gunicorn.{% endblock description %}"/>
+        <meta name="keywords" content="{% block keywords %}Python/Django, PostgreSQL, Docker, Redis, Nginx, Gunicorn.{% endblock keywords %}"/>
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/png" href="{% static 'images/fav/favicon.ico' %}"/>
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/fav/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/fav/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'images/fav/manifest.json' %}"/>
+        <link rel="mask-icon" href="{% static 'images/fav/safari-pinned-tab.svg' %}"/>
+    </head>
+
+    <body style="width: 610px; margin: 0 auto">
+        {% block navigation %}
+            {% include "includes/nav.html" %}
+        {% endblock navigation %}
+
         {% block content %}
         {% endblock content%}
+
+        {% block footer %}
+            {% include "includes/footer.html" %}
+        {% endblock footer%}
+
+        {% include "includes/javascripts.html"%}
     </body>
 </html>
