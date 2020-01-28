@@ -1,1 +1,3 @@
-Portfolio of Almaz Kunpeissov, Python Software Engineer. Python/Django, PostgreSQL, Docker, Redis, Nginx, Gunicorn.
+# Software Engineer, Portfolio
+
+Portfolio of [Almaz Kunpeissov, Software Engineer](https://akun.dev). Python, Django.
