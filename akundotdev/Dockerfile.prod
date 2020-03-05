@@ -24,7 +24,7 @@ COPY . /usr/src/akundotdev
 
 # Install dependencies
 COPY requirements.txt .
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/akundotdev/wheel -r requirements.txt
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/akundotdev/wheels -r requirements.txt
 
 
 #########
@@ -36,7 +36,7 @@ FROM python:3.8.0-alpine
 
 
 # Make dir
-RUN mrdir -p /home/akundotdev
+RUN mkdir -p /home/akundotdev
 
 
 # Create group, user
