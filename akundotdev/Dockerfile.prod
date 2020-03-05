@@ -47,6 +47,7 @@ RUN addgroup -S akundotdev && adduser -S akundotdev -G akundotdev
 ENV HOME=/home/akundotdev
 ENV APP_HOME=/home/akundotdev/web
 RUN mkdir $APP_HOME
+RUN mkdir $APP_HOME/staticfiles
 WORKDIR $APP_HOME
 
 
