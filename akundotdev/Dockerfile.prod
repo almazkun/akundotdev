@@ -57,6 +57,7 @@ COPY --from=builder /usr/src/akundotdev/wheels /wheels
 COPY --from=builder /usr/src/akundotdev/requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install --no-cache /wheels/*
+RUN apk add --no-cache bash
 
 
 # copy project
