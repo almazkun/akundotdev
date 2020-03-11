@@ -13,22 +13,26 @@ services:
       - 8000
     env_file:
       - ./.env.prod
-  nginx:
-    build: ./nginx
-    volumes:
-      - static_volume:/home/akundotdev/web/staticfiles
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
+    depends_on:
+      - akundotdev-letsencrypt
+  akundotdev-letsencrypt:
+    image: linuxserver/letsencrypt
+    container_name: akundotdev-letsencrypt
     ports:
       - 80:80
       - 443:443
-    depends_on:
-      - web
-  certbot:
-    image: certbot/certbot
     volumes:
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
+      - ./config/letsencrypt:/config
+      - static_volume:/home/akundotdev/web/staticfiles
+    environment:
+      - EMAIL=hello@akun.dev
+      - URL=akun.dev
+      - SUBDOMAINS=www,api
+      - VALIDATION=http
+      - TZ=Europe/Stockholm
+      - PUID=0
+      - PGID=0
+
 
 
 volumes:
