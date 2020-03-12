@@ -15,6 +15,9 @@ services:
       - VIRTUAL_HOST=akun.dev
       - LETSENCRYPT_HOST=akun.dev
       - LETSENCRYPT_EMAIL=hello@akun.dev
+    volumes:
+      - ./akundotdev/:/usr/src/akundotdev/
+      - static_volume:/home/akundotdev/web/staticfiles
 
   nginx-proxy:
     image: jwilder/nginx-proxy
@@ -26,6 +29,7 @@ services:
       - "/usr/share/nginx/html"
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
       - "/etc/nginx/certs"
+      - static_volume:/home/akundotdev/web/staticfiles
 
   letsencrypt-nginx-proxy-companion:
     image: jrcs/letsencrypt-nginx-proxy-companion
@@ -33,3 +37,7 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
     volumes_from:
       - "nginx-proxy"
+
+
+volumes:
+  static_volume:
