@@ -16,7 +16,7 @@ services:
       - LETSENCRYPT_HOST=akun.dev
       - LETSENCRYPT_EMAIL=hello@akun.dev
     volumes:
-      - ./akundotdev/:/usr/src/akundotdev/
+      - "./akundotdev/:/usr/src/akundotdev/"
       - "/home/akundotdev/web/staticfiles"
 
   nginx-proxy:

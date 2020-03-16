@@ -10,12 +10,6 @@
         <meta name="description" content="{% block description %}Portfolio of Almaz Kunpeissov, Python Software Engineer. Python/Django, PostgreSQL, Docker, Redis, Nginx, Gunicorn.{% endblock description %}"/>
         <meta name="keywords" content="{% block keywords %}Python/Django, PostgreSQL, Docker, Redis, Nginx, Gunicorn.{% endblock keywords %}"/>
 
-        <!-- Stylesheets -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-        <!-- Icons from https://fontawesome.com/-->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous"> 
-
         <!-- Favicon -->
         <link rel="manifest" href="{% static 'images/fav/site.webmanifest' %}">
         <link rel="mask-icon" href="{% static 'images/fav/safari-pinned-tab.svg' %}" color="#5bbad5">
@@ -37,7 +31,7 @@
     }
     </style>
 
-    <body style="width: 610px; margin: 0 auto">
+    <body style="width: 610px; margin: 0 auto;">
         {% block navigation %}
             {% include "includes/nav.html" %}
         {% endblock navigation %}
@@ -49,6 +43,8 @@
             {% include "includes/footer.html" %}
         {% endblock footer%}
 
-        {% include "includes/javascripts.html"%}
+        {% block javascripts %}
+            {% include "includes/javascripts.html"%}
+        {% endblock javascripts%}
     </body>
 </html>
