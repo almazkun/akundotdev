@@ -9,6 +9,9 @@
         <title>{% block title %}Almaz Kunpeissov | Software Engineer | Python | Portfolio.{% endblock title %}</title>
         <meta name="description" content="{% block description %}Portfolio of Almaz Kunpeissov, Python Software Engineer. Python/Django, PostgreSQL, Docker, Redis, Nginx, Gunicorn.{% endblock description %}"/>
         <meta name="keywords" content="{% block keywords %}Python/Django, PostgreSQL, Docker, Redis, Nginx, Gunicorn.{% endblock keywords %}"/>
+        
+        <!--Custom Stylesheets-->
+        <link rel="stylesheet" href="{% static 'styles/style.css' %}">
 
         <!-- Favicon -->
         <link rel="manifest" href="{% static 'images/fav/site.webmanifest' %}">
@@ -21,15 +24,6 @@
         <meta name="msapplication-config" content="{% static 'images/fav/browserconfig.xml' %}">
         <meta name="theme-color" content="#ffffff">
     </head>
-
-    <style>
-    a {
-        color: inherit;
-    }
-    a:hover {
-        color: inherit;
-    }
-    </style>
 
     <body style="width: 610px; margin: 0 auto;">
         {% block navigation %}
