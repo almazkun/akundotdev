@@ -10,8 +10,6 @@
         <meta name="description" content="{% block description %}Portfolio of Almaz Kunpeissov, Python Software Engineer. Python/Django, PostgreSQL, Docker, Redis, Nginx, Gunicorn.{% endblock description %}"/>
         <meta name="keywords" content="{% block keywords %}Python/Django, PostgreSQL, Docker, Redis, Nginx, Gunicorn.{% endblock keywords %}"/>
         
-        <!--Custom Stylesheets-->
-        <link rel="stylesheet" href="{% static 'styles/style.css' %}">
 
         <!-- Favicon -->
         <link rel="manifest" href="{% static 'images/fav/site.webmanifest' %}">
@@ -25,7 +23,7 @@
         <meta name="theme-color" content="#ffffff">
     </head>
 
-    <body style="max-width: 610px; margin: 0 auto;">
+    <body class="container" style="max-width: 610px; margin: 0 auto;">
         {% block navigation %}
             {% include "includes/nav.html" %}
         {% endblock navigation %}
