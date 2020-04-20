@@ -27,6 +27,3 @@ class Article(models.Model):
     def update_views(self):
         self.views += 1
         self.save(update_fields=["views"])
-
-    def content_to_markdown(self):
-        return markdown.markdown(self.content, extensions=["markdown.extensions.extra"])

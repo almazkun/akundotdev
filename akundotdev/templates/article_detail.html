@@ -1,5 +1,6 @@
 {% extends "layouts/base.html" %}
-{% load static%}
+
+{% load markdown_extras %}
 
 {% block content%}
     
@@ -9,7 +10,7 @@
             <p class="lead">{{ article.description }}</p>
             <p class="text-muted"> {{ article.updated_on|date:"M j, Y" }}</p>
             <div class="my-5">
-                {{ article.content|safe }}
+                {{ article.content | markdown | safe }}
             </div>
            
         </div>

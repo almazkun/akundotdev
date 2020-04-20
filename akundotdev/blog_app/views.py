@@ -20,9 +20,5 @@ class DetailView(generic.DetailView):
     def get_object(self):
         obj = super(DetailView, self).get_object()
         obj.update_views()
-
-        md = markdown.Markdown(extensions=["markdown.extensions.extra"])
-        obj.content = md.convert(obj.content)
-
         return obj
 # Create your views here.
