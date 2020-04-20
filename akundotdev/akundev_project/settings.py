@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", default="asdasdcnjx289rm34yc3487cny5cb
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = int(os.environ.get("DEBUG", default=0))
+DEBUG = int(os.environ.get("DEBUG", default=1))
 
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", default="*")
@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "portfolio.apps.PortfolioConfig"
+    "portfolio.apps.PortfolioConfig",
+    "blog_app.apps.BlogAppConfig"
 ]
 
 MIDDLEWARE = [
