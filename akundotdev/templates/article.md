@@ -110,15 +110,38 @@ We need to add new DNS records for our domain. For a number of reasons I like [C
 ![alt text](https://raw.githubusercontent.com/almazkun/ins_GH_hosting/master/static/images/34.png "Delete old DNS records")
 - And add DNS records we need. In the table below is how you need to type them in the empty field. They will be displayed little differently after you hit `Add Record` button. 
 
-
-    Type|Name|Value
-    ---|---|---
-    A|@|185.199.108.153|
-    A|@|185.199.109.153|
-    A|@|185.199.110.153|
-    A|@|185.199.111.153|
-    CNAME|www|@
-
+    <table>
+    <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>A</td>
+        <td>@</td>
+        <td>185.199.108.153</td>
+    </tr>
+    <tr>
+        <td>A</td>
+        <td>@</td>
+        <td>185.199.109.153</td>
+    </tr>
+    <tr>
+        <td>A</td>
+        <td>@</td>
+        <td>185.199.110.153</td>
+    </tr>
+    <tr>
+        <td>A</td>
+        <td>@</td>
+        <td>185.199.111.153</td>
+    </tr>
+    <tr>
+        <td>CNAME</td>
+        <td>www</td>
+        <td>@</td>
+    </tr>
+    </table> 
 
 - Press `Continue`. 
 ![alt text](https://raw.githubusercontent.com/almazkun/ins_GH_hosting/master/static/images/35.png "Add new ones")
