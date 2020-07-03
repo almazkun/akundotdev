@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from django.views.generic import ListView
 
-# Create your views here.
+
+from .models import Tag, Article
+
+
+class HomepageListView(ListView):
+    model = Article
+    context_object_name = "article"
+    template_name = "articles/home.html"
