@@ -3,5 +3,19 @@
 <div>
     <h1 class="display-4">Articles</h1>
     <p class="lead">Articles related to Python, Django and Software Development in general.<p>
+    <hr>
+    
+        {{article.title}}
+        {{article.author}}
+        {{article.description}}
+        {{article.content|safe}}
+        {{article.img_link}}
+        {{article.created_on}}
+        {{article.updated_on}}
+        {{article.views}}
+        {{article.is_published}}
+        {{article.tags}}
+        {{article.get_absolute_url}}
+    
 </div>
 {% endblock main_content %}

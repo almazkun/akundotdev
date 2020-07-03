@@ -1,3 +1,7 @@
 .container {
     max-width: 790px;
 }
+
+img {
+    max-width: 100%;
+}

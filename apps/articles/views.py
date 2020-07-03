@@ -21,10 +21,9 @@ class ArticleListView(ListView):
 
 class ArticleDetailView(DetailView):
     model = Article
-    context_object_name = "articles"
+    context_object_name = "article"
     template_name = "articles/article_detail.html"
-    
-    
+
     def get_object(self):
         obj = super(DetailView, self).get_object()
         obj.update_views()
