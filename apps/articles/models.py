@@ -1,8 +1,9 @@
 from django.db import models
-from apps.users.models import CustomUser
-
+from django.urls import reverse
 import markdown
 
+
+from apps.users.models import CustomUser
 # Create your models here.
 class Tag(models.Model):
     tag_name = models.CharField(verbose_name="Tag", max_length=150)
@@ -52,3 +53,7 @@ class Article(models.Model):
     
     def content_to_markdown(self):
         return markdown.markdown(self.content, extensions=["markdown.extensions.extra"])
+    
+    
+    def get_absolute_url(self):
+        return reverse("article:article_detail", args=[self.slug])
