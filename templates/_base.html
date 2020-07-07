@@ -32,28 +32,16 @@
     </head>
 
     <body>
-        <section id="nav">
-            <div class="container">
-                {% block navigation %}
-                    {% include 'includes/navigation.html' %}
-                {% endblock navigation %}
-            </div>
-        </section>
+        {% block navigation %}
+            {% include 'includes/navigation.html' %}
+        {% endblock navigation %}
 
-        <section id="main" class="main">
-            <div class="container">
-                {% block main_content %}
-                {% endblock main_content %}
-            </div>
-        </section>
+        {% block main_content %}
+        {% endblock main_content %}
 
-        <section id="footer" class="bg-dark text-white">
-            <div class="container">
-                {% block footer %}
-                    {% include 'includes/footer.html' %}
-                {% endblock footer %}
-            </div>
-        </section>
+        {% block footer %}
+            {% include 'includes/footer.html' %}
+        {% endblock footer %}
 
         {% block javascript %}
             <!-- Bootstrap JavaScript -->

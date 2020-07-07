@@ -6,6 +6,16 @@ import markdown
 from apps.users.models import CustomUser
 
 
+class ArticleQuerySet(models.QuerySet):
+    def is_published(self):
+        return self.filter(is_published=True)
+
+
+class ArticleManager(models.Manager):
+    def get_queryset(self):
+        return ArticleQuerySet(self.model, using=self._db)
+
+
 # Create your models here.
 class Tag(models.Model):
     tag_name = models.CharField(verbose_name="Tag", max_length=150)
@@ -36,6 +46,8 @@ class Article(models.Model):
     is_published = models.BooleanField("Published", default=False)
     tags = models.ManyToManyField(Tag, verbose_name="Tags")
 
+    objects = ArticleManager()
+
     class Meta:
         verbose_name = "Article"
         verbose_name_plural = "Articles"
@@ -49,7 +61,8 @@ class Article(models.Model):
         self.save(update_fields=["views"])
 
     def content_to_markdown(self):
-        return markdown.markdown(self.content, extensions=["markdown.extensions.extra"])
+        md = markdown.Markdown(extensions=["markdown.extensions.extra"])
+        return md.convert(self.content)
 
     def get_absolute_url(self):
         return reverse("article_detail", args=[self.slug])

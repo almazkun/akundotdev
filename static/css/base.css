@@ -10,7 +10,6 @@ a:hover {
     color: #007bff;
 }
 
-
 .logo {
     width: 2rem;
     height: 2rem;
@@ -20,7 +19,6 @@ a:hover {
     background-repeat: no-repeat;
     background-size: cover;
 }
-
 
 #main {
     min-height: 80vh;

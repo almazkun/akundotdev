@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
+import markdown
 
 from .models import Tag, Article
 from apps.users.models import CustomUser
@@ -18,11 +19,22 @@ test_article = {
     "title": "test_article",
     "slug": "test_article",
     "description": "long test description",
-    "content": "long test context",
+    "content": "# long test context",
     "img_link": "https://test_tag.org/test.png",
     "views": 100,
     "is_published": True,
 }
+
+test_article_not_pub = {
+    "title": "test_article_not_pub",
+    "slug": "test_article_not_pub",
+    "description": "long test description_not_pub",
+    "content": "long test context_not_pub",
+    "img_link": "https://test_tag.org/test.png",
+    "views": 500,
+    "is_published": False,
+}
+
 
 normal_user = {"username": "normal", "email": "normal@user.com", "password": "foo"}
 
@@ -39,35 +51,98 @@ class TestTagModel(TestCase):
 
 
 class TestArticleModel(TestCase):
-    def test_article_model(self):
+    def setUp(self):
         CustomUser.objects.create_user(**normal_user)
         author = CustomUser.objects.get(username=normal_user["username"])
         test_article["author"] = author
+        test_article_not_pub["author"] = author
         Article.objects.create(**test_article)
-        obj = Article.objects.get(title=test_article["title"])
+        Article.objects.create(**test_article_not_pub)
 
-        self.assertEqual(obj.title, test_article["title"])
-        self.assertEqual(obj.slug, test_article["slug"])
-        self.assertEqual(obj.author, test_article["author"])
-        self.assertEqual(obj.description, test_article["description"])
-        self.assertEqual(obj.content, test_article["content"])
-        self.assertEqual(obj.img_link, test_article["img_link"])
-        self.assertEqual(obj.views, test_article["views"])
-        self.assertEqual(obj.is_published, test_article["is_published"])
+    def test_article_model(self):
+        test_obj = test_article
+        obj = Article.objects.get(title=test_obj["title"])
+
+        self.assertEqual(obj.title, test_obj["title"])
+        self.assertEqual(obj.slug, test_obj["slug"])
+        self.assertEqual(obj.author, test_obj["author"])
+        self.assertEqual(obj.description, test_obj["description"])
+        self.assertEqual(obj.content, test_obj["content"])
+        self.assertEqual(obj.img_link, test_obj["img_link"])
+        self.assertEqual(obj.views, test_obj["views"])
+        self.assertEqual(obj.is_published, test_obj["is_published"])
+
+    def test_article_not_pub(self):
+        test_obj = test_article_not_pub
+        obj = Article.objects.get(title=test_obj["title"])
+
+        self.assertEqual(obj.title, test_obj["title"])
+        self.assertEqual(obj.slug, test_obj["slug"])
+        self.assertEqual(obj.author, test_obj["author"])
+        self.assertEqual(obj.description, test_obj["description"])
+        self.assertEqual(obj.content, test_obj["content"])
+        self.assertEqual(obj.img_link, test_obj["img_link"])
+        self.assertEqual(obj.views, test_obj["views"])
+        self.assertEqual(obj.is_published, test_obj["is_published"])
+
+    def test_article_manager(self):
+        obj = Article.objects.all()
+        obj_is_pub = Article.objects.all().is_published()
+
+        self.assertEqual(obj.count(), 2)
+        self.assertEqual(obj_is_pub.count(), 1)
+
+    def test_articel_markdown(self):
+        test_obj = test_article
+        obj = Article.objects.get(pk=1)
+        md = markdown.Markdown(extensions=["markdown.extensions.extra"])
+
+        self.assertEqual(obj.content_to_markdown(), md.convert(test_obj["content"]))
+
+    def test_views(self):
+        test_obj = test_article
+        obj = Article.objects.get(title=test_obj["title"])
+        obj.update_views()
+
+        self.assertEqual(obj.views, test_obj["views"] + 1)
 
 
 class TestHomepageListView(TestCase):
+    def setUp(self):
+        CustomUser.objects.create_user(**normal_user)
+        author = CustomUser.objects.get(username=normal_user["username"])
+        test_article["author"] = author
+        test_article_not_pub["author"] = author
+        Article.objects.create(**test_article)
+        Article.objects.create(**test_article_not_pub)
+
     def test_home(self):
+        obj_is_pub = Article.objects.all().is_published()
         response = self.client.get(reverse("home"))
 
+        self.assertQuerysetEqual(
+            response.context["articles"], obj_is_pub, transform=lambda x: x
+        )
         self.assertTemplateUsed(response, "articles/home.html")
         self.assertEqual(response.status_code, 200)
 
 
 class TestArticleListView(TestCase):
+    def setUp(self):
+        CustomUser.objects.create_user(**normal_user)
+        author = CustomUser.objects.get(username=normal_user["username"])
+        test_article["author"] = author
+        test_article_not_pub["author"] = author
+        Article.objects.create(**test_article)
+        Article.objects.create(**test_article_not_pub)
+
     def test_articles(self):
+        obj_is_pub = Article.objects.all().is_published()
         response = self.client.get(reverse("articles"))
 
+        self.assertQuerysetEqual(
+            response.context["articles"], obj_is_pub, transform=lambda x: x
+        )
         self.assertTemplateUsed(response, "articles/articles.html")
         self.assertEqual(response.status_code, 200)
 
