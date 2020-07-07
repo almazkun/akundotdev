@@ -2,11 +2,15 @@
 {% block main_content %}
     <section id="main" class="main">
         <div class="container">
-            <div>
+            <div class="my-4">
                 <h1 class="display-4">Articles</h1>
                 <p class="lead">Articles related to Python, Django and Software Development in general.<p>
                 <hr>
+                {% for article in articles %}
+                    {% include 'includes/list_article.html' %}
+                {% endfor %}
             </div>
+            <a href="{% url 'articles' %}"><div class="btn btn-outline-dark">All articles</div></a>
         </div>
     </section>
 {% endblock main_content %}
