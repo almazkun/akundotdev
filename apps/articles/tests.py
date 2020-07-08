@@ -136,6 +136,7 @@ class TestHomepageListView(TestCase):
             response.context["main_author"], main_author
         )
 
+
 class TestArticleListView(TestCase):
     def setUp(self):
         CustomUser.objects.create_user(**normal_user)

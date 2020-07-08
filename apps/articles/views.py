@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from apps.users.models import CustomUser
 
 import markdown
@@ -17,6 +17,7 @@ class HomepageListView(ListView):
         context = super().get_context_data(**kwargs)
         context["main_author"] = CustomUser.objects.filter(main_user=True).first()
         return context
+
 
 class ArticleListView(ListView):
     model = Article
