@@ -1,0 +1,68 @@
+html, body {
+    color: #1d1d1f;
+}
+
+.container {
+    max-width: 653px;
+}
+
+img {
+    max-width: 100%;
+}
+
+body {
+    min-height: 100vh;
+}
+
+a {
+    color: inherit;
+}
+
+a:hover {
+    color: #6c757d;
+}
+
+.logo {
+    width: 2rem;
+    height: 2rem;
+    background-image: url("/static/images/fav/android-chrome-512x512.png");
+    background-color: #1d1d1f;
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-black {
+    background-color: #010101;
+}
+
+.icon {
+    width: 3rem;
+}
+
+#main {
+    min-height: 80vh;
+}
+
+#footer {
+    min-height: 20vh;
+}
+
+.author_photo {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #010101;
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.article_content > h1 {
+    margin-top: 3rem;
+}
+.article_content > h2 {
+    margin-top: 2.5rem;
+}
+.article_content > h3 {
+    margin-top: 1rem;
+}

@@ -1,0 +1,16 @@
+<div class="mb-4">
+    <a href="{{ article.get_absolute_url }}"><h3>{{ article.title }}</h3></a>
+    <a href="{{ article.get_absolute_url }}"><div class="mb-2">{{ article.description }}</div></a>
+    <div class="d-flex mb-2 align-items-center">
+            <a href="{{ article.get_absolute_url }}"><img class="rounded-circle author_photo" src="{{article.author.photo}}"></a>
+            <div class="ml-2 text-muted small">
+                <div>{{article.author.first_name}} {{article.author.last_name}}</div>
+                <div>{% if article.created_on < article.updated_on %}
+                        {{ article.updated_on|date:'M D, y' }}
+                    {% else %}
+                        {{ article.created_on|date:'Y-m-d' }}
+                    {% endif %}
+                </div>
+            </div>
+    </div>
+</div>
