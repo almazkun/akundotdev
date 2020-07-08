@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView
-
+from apps.users.models import CustomUser
 
 import markdown
 
@@ -12,13 +12,22 @@ class HomepageListView(ListView):
     context_object_name = "articles"
     template_name = "articles/home.html"
     queryset = Article.objects.all().is_published()[:5]
-
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["main_author"] = CustomUser.objects.filter(main_user=True).first()
+        return context
 
 class ArticleListView(ListView):
     model = Article
     context_object_name = "articles"
     template_name = "articles/articles.html"
     queryset = Article.objects.all().is_published()
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["main_author"] = CustomUser.objects.filter(main_user=True).first()
+        return context
 
 
 class ArticleDetailView(DetailView):
@@ -31,3 +40,8 @@ class ArticleDetailView(DetailView):
         obj.update_views()
         obj.content = obj.content_to_markdown()
         return obj
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["main_author"] = CustomUser.objects.filter(main_user=True).first()
+        return context

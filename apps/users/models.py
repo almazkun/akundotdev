@@ -11,6 +11,6 @@ class CustomUser(AbstractUser):
     cv_link = models.CharField(verbose_name="Resume (CV)", max_length=255, blank=True)
     public_email = models.CharField(verbose_name="Email", max_length=255, blank=True)
     main_user = models.BooleanField(verbose_name="Main User", default=False)
-
+    
     def __str__(self):
         return self.email
