@@ -2,6 +2,10 @@ html, body {
     color: #1d1d1f;
 }
 
+.container {
+    max-width: 653px;
+}
+
 img {
     max-width: 100%;
 }
@@ -30,6 +34,10 @@ a:hover {
 
 .bg-black {
     background-color: #010101;
+}
+
+.icon {
+    width: 3rem;
 }
 
 #main {
