@@ -57,4 +57,4 @@ class UsersManagersTests(TestCase):
         obj = CustomUser.objects.get(username=super_user["username"])
         test_object = CustomUser.objects.get(username=normal_user["username"])
         
-        self.assertNotEqual(obj.main_user, test_object.main_user)
+        self.assertEqual(obj.main_user, test_object.main_user)
