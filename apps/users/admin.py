@@ -19,6 +19,11 @@ class CustomUserAdmin(UserAdmin):
             {
                 'fields': (
                     'photo',
+                    'github_link',
+                    'linkedin_link',
+                    'cv_link',
+                    'public_email',
+                    'main_user',
                 ),
             },
         ),
