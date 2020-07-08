@@ -13,7 +13,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.6]
+        python-version: [3.7]
 
     steps:
     - uses: actions/checkout@v2
@@ -24,7 +24,7 @@ jobs:
     - name: Install pipenv
       run: |
         pip install pipenv
-        pipenv install isort, black, flake8, mypy, pytest
+        pipenv install black, flake8, mypy, pytest
         pipenv install
         
     - run: pipenv run isort --recursive --diff
