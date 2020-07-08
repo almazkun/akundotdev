@@ -5,19 +5,17 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('users', '0005_auto_20200708_1208'),
-    ]
+    dependencies = [("users", "0005_auto_20200708_1208")]
 
     operations = [
         migrations.AddField(
-            model_name='customuser',
-            name='main_user',
-            field=models.BooleanField(default=False, verbose_name='Main User'),
+            model_name="customuser",
+            name="main_user",
+            field=models.BooleanField(default=False, verbose_name="Main User"),
         ),
         migrations.AlterField(
-            model_name='customuser',
-            name='public_email',
-            field=models.CharField(blank=True, max_length=255, verbose_name='Email'),
+            model_name="customuser",
+            name="public_email",
+            field=models.CharField(blank=True, max_length=255, verbose_name="Email"),
         ),
     ]

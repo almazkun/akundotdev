@@ -5,15 +5,17 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('users', '0001_initial'),
-    ]
+    dependencies = [("users", "0001_initial")]
 
     operations = [
         migrations.AddField(
-            model_name='customuser',
-            name='photo',
-            field=models.CharField(default='https://photo.com/photo.png', max_length=255, verbose_name='Photo'),
+            model_name="customuser",
+            name="photo",
+            field=models.CharField(
+                default="https://photo.com/photo.png",
+                max_length=255,
+                verbose_name="Photo",
+            ),
             preserve_default=False,
-        ),
+        )
     ]
