@@ -29,20 +29,20 @@ super_user = {
     "public_email": "hello@akun.dev",
 }
 
+
 class TestAboutTemplateView(TestCase):
     def setUp(self):
         test_obj = normal_user
-        CustomUser.objects.create_user(main_user = True, **test_obj)
+        CustomUser.objects.create_user(main_user=True, **test_obj)
         author = CustomUser.objects.get(username=test_obj["username"])
         self.main_author = CustomUser.objects.get(username=test_obj["username"])
         self.response = self.client.get(reverse("about"))
-        
+
     def test_about(self):
         self.assertTemplateUsed(self.response, "users/about.html")
         self.assertEqual(self.response.status_code, 200)
-        self.assertEqual(
-            self.response.context["main_author"], self.main_author
-        )
+        self.assertEqual(self.response.context["main_author"], self.main_author)
+
 
 class UsersManagersTests(TestCase):
     def test_create_user(self):

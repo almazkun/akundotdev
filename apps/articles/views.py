@@ -12,7 +12,7 @@ class HomepageListView(ListView):
     context_object_name = "articles"
     template_name = "articles/home.html"
     queryset = Article.objects.all().is_published()[:5]
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["main_author"] = CustomUser.objects.filter(main_user=True).first()
@@ -24,7 +24,7 @@ class ArticleListView(ListView):
     context_object_name = "articles"
     template_name = "articles/articles.html"
     queryset = Article.objects.all().is_published()
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["main_author"] = CustomUser.objects.filter(main_user=True).first()
@@ -41,7 +41,7 @@ class ArticleDetailView(DetailView):
         obj.update_views()
         obj.content = obj.content_to_markdown()
         return obj
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["main_author"] = CustomUser.objects.filter(main_user=True).first()

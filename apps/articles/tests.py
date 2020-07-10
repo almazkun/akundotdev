@@ -125,16 +125,14 @@ class TestHomepageListView(TestCase):
         )
         self.assertTemplateUsed(response, "articles/home.html")
         self.assertEqual(response.status_code, 200)
-        
+
     def test_main_author(self):
         main_author = CustomUser.objects.get(username=normal_user["username"])
         main_author.main_user = True
         main_author.save()
         response = self.client.get(reverse("home"))
-        
-        self.assertEqual(
-            response.context["main_author"], main_author
-        )
+
+        self.assertEqual(response.context["main_author"], main_author)
 
 
 class TestArticleListView(TestCase):
@@ -155,16 +153,14 @@ class TestArticleListView(TestCase):
         )
         self.assertTemplateUsed(response, "articles/articles.html")
         self.assertEqual(response.status_code, 200)
-        
+
     def test_main_author(self):
         main_author = CustomUser.objects.get(username=normal_user["username"])
         main_author.main_user = True
         main_author.save()
         response = self.client.get(reverse("articles"))
-        
-        self.assertEqual(
-            response.context["main_author"], main_author
-        )
+
+        self.assertEqual(response.context["main_author"], main_author)
 
 
 class TestArticleDetailView(TestCase):
@@ -183,7 +179,7 @@ class TestArticleDetailView(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "articles/article_detail.html")
-        
+
     def test_main_author(self):
         main_author = CustomUser.objects.get(username=normal_user["username"])
         main_author.main_user = True
@@ -191,7 +187,5 @@ class TestArticleDetailView(TestCase):
         response = self.client.get(
             reverse("article_detail", kwargs={"slug": test_article["slug"]})
         )
-        
-        self.assertEqual(
-            response.context["main_author"], main_author
-        )
+
+        self.assertEqual(response.context["main_author"], main_author)

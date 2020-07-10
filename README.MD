@@ -26,4 +26,19 @@ docker-compose -f docker-compose.prod.yml exec web python manage.py migrate --no
 docker-compose -f docker-compose.prod.yml exec web python manage.py collectstatic --no-input --clear
 ```
 
+```
+<VirtualHost *:80>
+    ServerAdmin me@akun.dev
+    DocumentRoot /var/www/html/akun.dev/
+    ServerName akun.dev
+    <Directory /var/www/html/akun.dev/>
+        Options FollowSymLinks
+        AllowOverride All
+        Order allow,deny
+        allow from all
+    </Directory>
+    ErrorLog /var/log/httpd/akun.dev.com-error_log
+    CustomLog /var/log/httpd/akun.dev.com-access_log common
+</VirtualHost>
 
+```
