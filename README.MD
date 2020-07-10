@@ -31,14 +31,29 @@ docker-compose -f docker-compose.prod.yml exec web python manage.py collectstati
     ServerAdmin me@akun.dev
     DocumentRoot /var/www/html/akun.dev/
     ServerName akun.dev
-    <Directory /var/www/html/akun.dev/>
-        Options FollowSymLinks
-        AllowOverride All
-        Order allow,deny
-        allow from all
+
+    <Directory /var/www/html/akun.dev/akundotdev_conf>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
     </Directory>
+    WSGIScriptAlias / /var/www/html/akun.dev/akundotdev_conf/wsgi.py
+    
     ErrorLog /var/log/httpd/akun.dev.com-error_log
     CustomLog /var/log/httpd/akun.dev.com-access_log common
 </VirtualHost>
 
 ```
+
+<VirtualHost you.ip.address:80>
+
+  ServerAdmin admin@you.ip.address
+  ServerName you.ip.address
+  ServerAlias you.ip.address
+
+  <Directory /You/directory/where/wsgifile>
+    <Files wsgi.py>
+      Require all granted
+    </Files>
+  </Directory>  
+  WSGIScriptAlias / /You/directory/where/wsgifile/wsgi.py
