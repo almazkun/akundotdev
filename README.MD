@@ -57,3 +57,16 @@ docker-compose -f docker-compose.prod.yml exec web python manage.py collectstati
     </Files>
   </Directory>  
   WSGIScriptAlias / /You/directory/where/wsgifile/wsgi.py
+
+```bash
+docker run -it -p 8080:80 --name dokr 7f5b6ccd03e9 bash
+```
+
+```bash
+gunicorn -b 127.0.0.1:80 -w 3 akundotdev_conf.wsgi
+```
+
+```bash
+git clone https://github.com/almazkun/akundotdev.git
+```
+
