@@ -27,4 +27,9 @@ jobs:
         pipenv install
     - name: Run Tests
       run: |
+        pipenv run python manage.py collectstatic
         pipenv run python manage.py test
+    - name: Run Linters
+      run: |
+        pipenv black
+        pipenv run black .
