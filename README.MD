@@ -14,10 +14,10 @@ Portfolio of [Almaz Kunpeissov, Software Engineer](https://akun.dev). Python, Dj
 
 ## Docker commands
 ```bash
-docker-compose -f docker-compose.prod.yml down -v
+docker-compose -f docker-compose.yml down -v
 
 
-docker-compose -f docker-compose.prod.yml up -d --build
+docker-compose -f docker-compose.yml up -d --build
 
 
 docker-compose -f docker-compose.prod.yml exec web python manage.py migrate --noinput
