@@ -31,5 +31,5 @@ jobs:
         pipenv run python manage.py test
     - name: Run Linters
       run: |
-        pipenv black
+        pipenv install black
         pipenv run black .
