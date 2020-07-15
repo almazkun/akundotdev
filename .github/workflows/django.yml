@@ -24,6 +24,7 @@ jobs:
     - name: Install pipenv
       run: |
         pip install pipenv
+        pip install mysqlclient 
         pipenv install
     - name: Run Tests
       run: |
