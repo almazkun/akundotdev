@@ -70,3 +70,4 @@ gunicorn -b 127.0.0.1:80 -w 3 akundotdev_conf.wsgi
 git clone https://github.com/almazkun/akundotdev.git
 ```
 
+sudo ./certbot-auto --debug -v --server https://acme-v02.api.letsencrypt.org/directory certonly -d akun.dev
