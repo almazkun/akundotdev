@@ -24,13 +24,8 @@ jobs:
     - name: Install pipenv
       run: |
         pip install pipenv
-        pip install mysqlclient 
         pipenv install
     - name: Run Tests
       run: |
         pipenv run python manage.py collectstatic
         pipenv run python manage.py test
-    - name: Run Linters
-      run: |
-        pip install black
-        black .
