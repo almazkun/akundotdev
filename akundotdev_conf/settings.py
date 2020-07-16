@@ -23,9 +23,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "_2i9@-t_)=y7g9gop+2%_c-)sye6@$)@i6w6@$p-!c6#4+%mmt"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+try:
+    import secret
+    DEBUG = secret.DEBUG
 
-ALLOWED_HOSTS = ["*"]
+except ModuleNotFoundError:
+    DEBUG = True
+
+
+ALLOWED_HOSTS = ["127.0.0.1", "akun.dev", "18.217.134.213"]
 
 
 # Application definition
@@ -91,7 +97,9 @@ try:
             "PORT": "",
         }
     }
+    
 except:
+    
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
