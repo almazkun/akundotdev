@@ -12,27 +12,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
-try: 
-    import secret
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.mysql",
-            "NAME": "django_db",
-            "USER": "djangouser",
-            "PASSWORD": secret.DB_PASSWORD,
-            "HOST": "",
-            "PORT": "",
-        }
-    }
-except:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-        }
-    }
-
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -98,25 +77,27 @@ WSGI_APPLICATION = "akundotdev_conf.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-"""
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-    }
-}
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "django_db",
-        "USER": "djangouser",
-        "PASSWORD": DB_PASSWORD,
-        "HOST": "",
-        "PORT": "",
+try: 
+    import secret
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": "django_db",
+            "USER": "djangouser",
+            "PASSWORD": secret.DB_PASSWORD,
+            "HOST": "",
+            "PORT": "",
+        }
     }
-}
-"""
+except:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        }
+    }
+
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
