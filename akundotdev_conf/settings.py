@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "_2i9@-t_)=y7g9gop+2%_c-)sye6@$)@i6w6@$p-!c6#4+%mmt"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -78,8 +78,9 @@ WSGI_APPLICATION = "akundotdev_conf.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-try: 
+try:
     import secret
+
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.mysql",
