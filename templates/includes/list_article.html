@@ -10,10 +10,11 @@
             <a href="{% url 'about' %}"><img class="rounded-circle author_photo" src="{{article.author.photo}}"></a>
             <div class="ml-2 text-muted small">
                 <a href="{% url 'about' %}"><div>{{article.author.first_name}} {{article.author.last_name}}</div></a>
-                <div>{% if article.created_on < article.updated_on %}
-                        {{ article.updated_on|date:'M D, y' }}
+                <div>
+                    {% if article.created_on < article.updated_on %}
+                        {{ article.updated_on|date:'M d, Y' }}
                     {% else %}
-                        {{ article.created_on|date:'Y-m-d' }}
+                        {{ article.created_on|date:'M d, Y' }}
                     {% endif %}
                 </div>
             </div>

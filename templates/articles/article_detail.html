@@ -10,10 +10,11 @@
                     <a href="{{ article.get_absolute_url }}"><img class="rounded-circle author_photo" src="{{article.author.photo}}"></a>
                     <div class="ml-2 text-muted small">
                         <div>{{article.author.first_name}} {{article.author.last_name}}</div>
-                        <div>{% if article.created_on < article.updated_on %}
-                                {{ article.updated_on|date:'M D, y' }}
+                        <div>
+                            {% if article.created_on < article.updated_on %}
+                                {{ article.updated_on|date:'M d, Y' }}
                             {% else %}
-                                {{ article.created_on|date:'Y-m-d' }}
+                                {{ article.created_on|date:'M d, Y' }}
                             {% endif %}
                         </div>
                     </div>
@@ -22,6 +23,11 @@
                 <img class="mb-2" src="{{ article.img_link }}">
                 <div class="article_content pb-4">
                     {{article.content|safe}}
+                </div>
+                <div class="mb-2">
+                    {% for tag in article.tags.all %}
+                        <a href="{{tag.get_absolute_url}}" class="badge badge-secondary">{{tag.tag_name}}</a>
+                    {% endfor %}
                 </div>
             </div>
         </div>
