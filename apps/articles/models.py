@@ -16,7 +16,6 @@ class ArticleManager(models.Manager):
         return ArticleQuerySet(self.model, using=self._db)
 
 
-# Create your models here.
 class Tag(models.Model):
     tag_name = models.CharField(verbose_name="Tag", max_length=150)
     img_link = models.CharField(verbose_name="Image url", max_length=255)

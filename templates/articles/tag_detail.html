@@ -8,10 +8,18 @@
                 <div class="embed-responsive embed-responsive-21by9 rounded mb-3">
                     <img class="embed-responsive-item"src="{{tag.img_link}}">
                 </div>
-                <p class="lead">{{ tag.description }}<p>
+                <p class="lead">{{ tag.description }}</p>
                 <a href="{{tag.source_link}}"><div class="btn btn-outline-dark">Read more</div></a>
-                <hr>
+                <hr class="p-4">
             </div>
+            {% if articles %}
+                <div class="my-4">
+                    <h2 class="display-4">Articles about {{ tag.tag_name|title }}</h2>
+                    {% for article in articles %}
+                        {% include 'includes/list_article.html' %}
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
     </section>
 {% endblock main_content %}
