@@ -5,8 +5,8 @@
         <div class="container">
             <div class="my-4">
                 <h1 class="display-4">{{ tag.tag_name }}</h1>
-                <div class="embed-responsive embed-responsive-21by9 rounded mb-3 p-2">
-                    <img class="embed-responsive-item" src="{{tag.img_link}}" style="object-fit: cover; object-position: center; width: 100%; height: 100%;">
+                <div class=" border embed-responsive embed-responsive-21by9 rounded mb-3">
+                    <img class="embed-responsive-item m-3" src="{{tag.img_link}}" style="object-fit: cover; object-position: center; width: 100%; height: 100%;">
                 </div>
                 <p class="lead">{{ tag.description }}</p>
                 <a href="{{tag.source_link}}" target="_blank"><div class="btn btn-outline-dark">Read more</div></a>
