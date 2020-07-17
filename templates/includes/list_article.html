@@ -3,7 +3,7 @@
     <a href="{{ article.get_absolute_url }}"><div class="mb-2">{{ article.description }}</div></a>
     <div class="mb-2">
         {% for tag in article.tags.all %}
-            <a href="#" class="badge badge-secondary">{{tag.tag_name}}</a>
+            <a href="{{tag.get_absolute_url}}" class="badge badge-secondary">{{tag.tag_name}}</a>
         {% endfor %}
     </div>
     <div class="d-flex mb-2 align-items-center">

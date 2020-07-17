@@ -22,6 +22,7 @@ class Tag(models.Model):
     img_link = models.CharField(verbose_name="Image url", max_length=255)
     description = models.CharField(verbose_name="Description", max_length=280)
     slug = models.SlugField(verbose_name="Slug", unique=True)
+    source_link = models.CharField(verbose_name="Sources url", max_length=255)
 
     class Meta:
         verbose_name = "Tag"
@@ -29,6 +30,9 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.tag_name
+    
+    def get_absolute_url(self):
+        return reverse("tag_detail", args=[self.slug])
 
 
 class Article(models.Model):

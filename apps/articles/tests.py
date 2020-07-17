@@ -5,7 +5,7 @@ import markdown
 
 from .models import Tag, Article
 from apps.users.models import CustomUser
-from .views import HomepageListView, ArticleListView, ArticleDetailView
+from .views import HomepageListView, ArticleListView, ArticleDetailView, TagDetailView
 
 
 test_tag = {
@@ -13,6 +13,7 @@ test_tag = {
     "img_link": "https://test_tag.org/test.png",
     "description": "long test description",
     "slug": "test_tag",
+    "source_link": "https://test_tag.org/",
 }
 
 test_article = {
@@ -48,6 +49,7 @@ class TestTagModel(TestCase):
         self.assertEqual(obj.img_link, test_tag["img_link"])
         self.assertEqual(obj.description, test_tag["description"])
         self.assertEqual(obj.slug, test_tag["slug"])
+        self.assertEqual(obj.source_link, test_tag["source_link"])
 
 
 class TestArticleModel(TestCase):
@@ -186,6 +188,35 @@ class TestArticleDetailView(TestCase):
         main_author.save()
         response = self.client.get(
             reverse("article_detail", kwargs={"slug": test_article["slug"]})
+        )
+
+        self.assertEqual(response.context["main_author"], main_author)
+
+
+class TagDetailView(TestCase):
+    def setUp(self):
+        self.test_object = test_tag
+        Tag.objects.create(**self.test_object)
+        
+
+    def test_article_detail(self):
+        obj = Tag.objects.get(tag_name=self.test_object["tag_name"])
+        response = self.client.get(
+            reverse("tag_detail", kwargs={"slug": self.test_object["slug"]})
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "articles/tag_detail.html")
+
+    def test_main_author(self):
+        test_user = normal_user
+        CustomUser.objects.create_user(**test_user)
+        main_author = CustomUser.objects.get(username=test_user["username"])
+        main_author.main_user = True
+        main_author.save()
+        
+        response = self.client.get(
+            reverse("tag_detail", kwargs={"slug": self.test_object["slug"]})
         )
 
         self.assertEqual(response.context["main_author"], main_author)

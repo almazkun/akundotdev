@@ -1,0 +1,17 @@
+{% extends "_base.html" %}
+{% block title %}{{tag.tag_name|title}}{% endblock title %}
+{% block main_content %}
+    <section id="main" class="main">
+        <div class="container">
+            <div class="my-4">
+                <h1 class="display-4">{{ tag.tag_name|title }}</h1>
+                <div class="embed-responsive embed-responsive-21by9 rounded mb-3">
+                    <img class="embed-responsive-item"src="{{tag.img_link}}">
+                </div>
+                <p class="lead">{{ tag.description }}<p>
+                <a href="{{tag.source_link}}"><div class="btn btn-outline-dark">Read more</div></a>
+                <hr>
+            </div>
+        </div>
+    </section>
+{% endblock main_content %}
