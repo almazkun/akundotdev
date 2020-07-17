@@ -49,7 +49,7 @@ docker-compose -f docker-compose.prod.yml exec web python manage.py collectstati
 
 
 ```bash
-gunicorn -b 127.0.0.1:80 -w 3 akundotdev_conf.wsgi
+gunicorn -b 127.0.0.1:8000 -w 3 akundotdev_conf.wsgi --daemon
 ```
 
 ```bash
