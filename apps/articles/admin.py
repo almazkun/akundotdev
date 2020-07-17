@@ -6,6 +6,12 @@ from .models import Tag, Article
 # Register your models here.
 
 
+class TagAdmin(admin.ModelAdmin):
+    list_display = ["tag_name"]
+    prepopulated_fields = {"slug": ("tag_name",)}
+
+
+admin.site.register(Tag, TagAdmin)
 
 
 class ArticleAdmin(admin.ModelAdmin):
