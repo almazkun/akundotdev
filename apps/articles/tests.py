@@ -5,6 +5,7 @@ import markdown
 
 from .models import Tag, Article
 from apps.users.models import CustomUser
+from apps.tools.models import Tool
 
 
 test_tag = {
@@ -37,6 +38,15 @@ test_article_not_pub = {
 
 
 normal_user = {"username": "normal", "email": "normal@user.com", "password": "foo"}
+
+test_tool = {
+    "name": "tool_name",
+    "slug": "tool_slug",
+    "description": "tool_description",
+    "img_link": "https://tool_img_link.com/tool.png",
+    "link": "https://tool_link.com",
+}
+
 
 # Create your tests here.
 class TestTagModel(TestCase):
@@ -93,7 +103,7 @@ class TestArticleModel(TestCase):
         self.assertEqual(obj.count(), 2)
         self.assertEqual(obj_is_pub.count(), 1)
 
-    def test_articel_markdown(self):
+    def test_article_markdown(self):
         test_obj = test_article
         obj = Article.objects.get(pk=1)
         md = markdown.Markdown(extensions=["markdown.extensions.extra"])
@@ -110,22 +120,29 @@ class TestArticleModel(TestCase):
 
 class TestHomepageListView(TestCase):
     def setUp(self):
+        self.test_tool = test_tool
         CustomUser.objects.create_user(**normal_user)
         author = CustomUser.objects.get(username=normal_user["username"])
         test_article["author"] = author
         test_article_not_pub["author"] = author
         Article.objects.create(**test_article)
         Article.objects.create(**test_article_not_pub)
+        Tool.objects.create(**self.test_tool)
+
 
     def test_home(self):
         obj_is_pub = Article.objects.all().is_published()
+        test_tool = Tool.objects.get(name=self.test_tool["name"])
         response = self.client.get(reverse("home"))
 
         self.assertQuerysetEqual(
             response.context["articles"], obj_is_pub, transform=lambda x: x
         )
+        self.assertEqual(response.context["tools"][0], test_tool)
         self.assertTemplateUsed(response, "articles/home.html")
         self.assertEqual(response.status_code, 200)
+        
+        
 
     def test_main_author(self):
         main_author = CustomUser.objects.get(username=normal_user["username"])

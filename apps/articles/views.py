@@ -3,7 +3,7 @@ from apps.users.models import CustomUser
 
 import markdown
 
-
+from apps.tools.models import Tool
 from .models import Tag, Article
 
 
@@ -16,6 +16,7 @@ class HomepageListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["main_author"] = CustomUser.objects.filter(main_user=True).first()
+        context["tools"] = Tool.objects.all()[:5]
         return context
 
 
