@@ -5,7 +5,6 @@ import markdown
 
 from .models import Tag, Article
 from apps.users.models import CustomUser
-from .views import HomepageListView, ArticleListView, ArticleDetailView, TagDetailView
 
 
 test_tag = {
@@ -198,7 +197,7 @@ class TestTagDetailView(TestCase):
         self.test_tag = test_tag
         self.test_user = normal_user
         self.test_article = test_article
-        
+
         CustomUser.objects.create_user(**normal_user)
         self.test_article["author"] = CustomUser.objects.get(
             username=self.test_user["username"]
@@ -207,19 +206,22 @@ class TestTagDetailView(TestCase):
         article.tags.add(Tag.objects.create(**self.test_tag))
         article.save()
 
-
     def test_article_detail(self):
         article = Article.objects.filter(tags__tag_name=self.test_tag["tag_name"])
         response = self.client.get(
             reverse("tag_detail", kwargs={"slug": self.test_tag["slug"]})
         )
-        
+
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["tag"].tag_name, self.test_tag["tag_name"])
         self.assertEqual(response.context["tag"].img_link, self.test_tag["img_link"])
-        self.assertEqual(response.context["tag"].description, self.test_tag["description"])
+        self.assertEqual(
+            response.context["tag"].description, self.test_tag["description"]
+        )
         self.assertEqual(response.context["tag"].slug, self.test_tag["slug"])
-        self.assertEqual(response.context["tag"].source_link, self.test_tag["source_link"])
+        self.assertEqual(
+            response.context["tag"].source_link, self.test_tag["source_link"]
+        )
         self.assertEqual(str(response.context["articles"]), str(article))
         self.assertTemplateUsed(response, "articles/tag_detail.html")
 
@@ -227,7 +229,7 @@ class TestTagDetailView(TestCase):
         main_author = CustomUser.objects.get(username=self.test_user["username"])
         main_author.main_user = True
         main_author.save()
-        
+
         response = self.client.get(
             reverse("tag_detail", kwargs={"slug": self.test_tag["slug"]})
         )

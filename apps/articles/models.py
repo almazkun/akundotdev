@@ -30,7 +30,7 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.tag_name
-    
+
     def get_absolute_url(self):
         return reverse("tag_detail", args=[self.slug])
 

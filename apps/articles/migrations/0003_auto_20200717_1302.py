@@ -5,13 +5,15 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('articles', '0002_tag_source_link'),
-    ]
+    dependencies = [("articles", "0002_tag_source_link")]
 
     operations = [
         migrations.AlterModelOptions(
-            name='tag',
-            options={'ordering': ['tag_name'], 'verbose_name': 'Tag', 'verbose_name_plural': 'Tags'},
-        ),
+            name="tag",
+            options={
+                "ordering": ["tag_name"],
+                "verbose_name": "Tag",
+                "verbose_name_plural": "Tags",
+            },
+        )
     ]

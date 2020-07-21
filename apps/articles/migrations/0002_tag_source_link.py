@@ -5,15 +5,15 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('articles', '0001_initial'),
-    ]
+    dependencies = [("articles", "0001_initial")]
 
     operations = [
         migrations.AddField(
-            model_name='tag',
-            name='source_link',
-            field=models.CharField(default='https://akun.dev/', max_length=255, verbose_name='Sources url'),
+            model_name="tag",
+            name="source_link",
+            field=models.CharField(
+                default="https://akun.dev/", max_length=255, verbose_name="Sources url"
+            ),
             preserve_default=False,
-        ),
+        )
     ]

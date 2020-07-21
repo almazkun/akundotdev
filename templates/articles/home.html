@@ -2,15 +2,28 @@
 {% block main_content %}
     <section id="main" class="main">
         <div class="container pb-4">
-            <div class="my-4">
-                <h1 class="display-4">Articles</h1>
-                <p class="lead">Articles related to Python, Django and Software Development in general.<p>
-                <hr>
-                {% for article in articles %}
-                    {% include 'includes/list_article.html' %}
-                {% endfor %}
+            <div class="pb-4">
+                <div class="my-4">
+                    <h1 class="display-4">Articles</h1>
+                    <p class="lead">Articles related to Python, Django and Software Development in general.<p>
+                    <hr>
+                    {% for article in articles %}
+                        {% include 'includes/list_article.html' %}
+                    {% endfor %}
+                </div>
+                <a class="mb-4" href="{% url 'articles' %}"><div class="btn btn-outline-dark">All articles</div></a>
             </div>
-            <a class="mb-4" href="{% url 'articles' %}"><div class="btn btn-outline-dark">All articles</div></a>
+            <div class="pb-4">
+                <div class="my-4">
+                    <h1 class="display-4">Tools of Python</h1>
+                    <p class="lead">Different software I've happened to write<p>
+                    <hr>
+                    {% for tool in tools %}
+                        {% include 'includes/list_tool.html' %}
+                    {% endfor %}
+                </div>
+                <a class="mb-4" href="{% url 'tools_list' %}"><div class="btn btn-outline-dark">All tools</div></a>
+            </div>
         </div>
     </section>
 {% endblock main_content %}
