@@ -10,7 +10,7 @@
                         <img class="embed-responsive-item" src="{{tool.img_link}}" style="object-fit: contain; object-position: center;">
                     </div>
                 </div>
-                <p class="lead">{{ tool.tool_description }}</p>
+                <p class="lead">{{ tool.description }}</p>
                 <a href="{{tool.link}}" target="_blank"><div class="btn btn-outline-dark mb-3">Try it</div></a>
                 <hr class="">
                 {% for tag in tool.tags.all %}

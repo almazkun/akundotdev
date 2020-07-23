@@ -23,6 +23,15 @@
                     <hr class="">
                 </div>
             {% endif %}
+            {% if tools %}
+                <div class="my-4">
+                    <h2 class="font-weight-bold">Tools with {{ tag.tag_name }}</h2>
+                    {% for tool in tools %}
+                        {% include 'includes/list_tool.html' %}
+                    {% endfor %}
+                    <hr class="">
+                </div>
+            {% endif %}
         </div>
     </section>
 {% endblock main_content %}

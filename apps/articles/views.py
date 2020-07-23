@@ -58,4 +58,5 @@ class TagDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context["main_author"] = CustomUser.objects.filter(main_user=True).first()
         context["articles"] = self.object.article_set.all()
+        context["tools"] = self.object.tool_set.all()
         return context
