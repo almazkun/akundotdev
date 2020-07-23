@@ -11,13 +11,13 @@ class Product(models.Model):
     description = models.CharField(verbose_name="Description", max_length=280)
     price = models.PositiveSmallIntegerField(verbose_name="Price")
     tags = models.ManyToManyField(Tag, verbose_name="Tags")
-    
+
     def __str__(self):
         return self.name
-        
+
     def get_absolute_url(self):
-        return reverse("tool_detail", args=[self.slug])
+        return reverse("product_detail", args=[self.slug])
 
     class Meta:
-        verbose_name = 'Product'
-        verbose_name_plural = 'Product'
+        verbose_name = "Product"
+        verbose_name_plural = "Product"

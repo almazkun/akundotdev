@@ -127,7 +127,6 @@ class TestHomepageListView(TestCase):
         Article.objects.create(**test_article_not_pub)
         Tool.objects.create(**self.test_tool)
 
-
     def test_home(self):
         obj_is_pub = Article.objects.all().is_published()
         test_tool = Tool.objects.get(name=self.test_tool["name"])
@@ -139,8 +138,6 @@ class TestHomepageListView(TestCase):
         self.assertEqual(response.context["tools"][0], test_tool)
         self.assertTemplateUsed(response, "articles/home.html")
         self.assertEqual(response.status_code, 200)
-        
-        
 
     def test_main_author(self):
         main_author = CustomUser.objects.get(username=normal_user["username"])

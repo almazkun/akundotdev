@@ -1,8 +1,8 @@
 from django.views.generic import ListView, DetailView, TemplateView
-from apps.users.models import CustomUser
 
 import markdown
 
+from apps.users.models import CustomUser
 from apps.tools.models import Tool
 from .models import Tag, Article
 

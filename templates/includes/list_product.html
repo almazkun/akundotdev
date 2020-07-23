@@ -1,0 +1,9 @@
+<div class="mb-4">
+    <a href="{{ product.get_absolute_url }}"><h3>{{ product.name }}</h3></a>
+    <a href="{{ product.get_absolute_url }}"><div class="mb-2">{{ product.description }}</div></a>
+    <div class="mb-2">
+        {% for tag in product.tags.all %}
+            <a href="{{tag.get_absolute_url}}" class="badge badge-secondary">{{tag.tag_name}}</a>
+        {% endfor %}
+    </div>
+</div>
