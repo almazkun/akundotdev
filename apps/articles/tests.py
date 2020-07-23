@@ -6,6 +6,7 @@ import markdown
 from .models import Tag, Article
 from apps.users.models import CustomUser
 from apps.tools.models import Tool
+from apps.shop.models import Product
 
 
 test_tag = {
@@ -44,6 +45,14 @@ test_tool = {
     "description": "tool_description",
     "img_link": "https://tool_img_link.com/tool.png",
     "link": "https://tool_link.com",
+}
+
+test_product = {
+    "name": "Test Product",
+    "abbr": "TEPR",
+    "slug": "tepr",
+    "description": "Test Product description",
+    "price": 2000,
 }
 
 # Create your tests here.
@@ -119,6 +128,7 @@ class TestArticleModel(TestCase):
 class TestHomepageListView(TestCase):
     def setUp(self):
         self.test_tool = test_tool
+        self.test_pro = test_product
         CustomUser.objects.create_user(**normal_user)
         author = CustomUser.objects.get(username=normal_user["username"])
         test_article["author"] = author
@@ -126,16 +136,20 @@ class TestHomepageListView(TestCase):
         Article.objects.create(**test_article)
         Article.objects.create(**test_article_not_pub)
         Tool.objects.create(**self.test_tool)
+        Product.objects.create(**self.test_pro)
 
     def test_home(self):
         obj_is_pub = Article.objects.all().is_published()
         test_tool = Tool.objects.get(name=self.test_tool["name"])
+        test_pro = Product.objects.get(name=self.test_pro["name"])
+        
         response = self.client.get(reverse("home"))
 
         self.assertQuerysetEqual(
             response.context["articles"], obj_is_pub, transform=lambda x: x
         )
         self.assertEqual(response.context["tools"][0], test_tool)
+        self.assertEqual(response.context["products"][0], test_pro)
         self.assertTemplateUsed(response, "articles/home.html")
         self.assertEqual(response.status_code, 200)
 

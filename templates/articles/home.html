@@ -24,6 +24,17 @@
                 </div>
                 <a class="mb-4" href="{% url 'tools_list' %}"><div class="btn btn-outline-dark">All tools</div></a>
             </div>
+            <div class="pb-4">
+                <div class="my-4">
+                    <h1 class="display-4">Shop of Python</h1>
+                    <p class="lead">Let's shop for some Python stuff, take your time.<p>
+                    <hr>
+                    {% for product in products %}
+                        {% include 'includes/list_product.html' %}
+                    {% endfor %}
+                </div>
+                <a class="mb-4" href="{% url 'products_list' %}"><div class="btn btn-outline-dark">Shop more</div></a>
+            </div>
         </div>
     </section>
 {% endblock main_content %}
