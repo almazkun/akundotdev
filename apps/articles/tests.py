@@ -36,7 +36,6 @@ test_article_not_pub = {
     "is_published": False,
 }
 
-
 normal_user = {"username": "normal", "email": "normal@user.com", "password": "foo"}
 
 test_tool = {
@@ -46,7 +45,6 @@ test_tool = {
     "img_link": "https://tool_img_link.com/tool.png",
     "link": "https://tool_link.com",
 }
-
 
 # Create your tests here.
 class TestTagModel(TestCase):
