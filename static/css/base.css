@@ -16,11 +16,16 @@ body {
 
 a {
     color: inherit;
-    word-wrap: break-word;
 }
 
 a:hover {
     color: #6c757d;
+}
+
+@media only screen and (max-width: 575px) {
+    .display-4 {
+        font-size: 3rem;
+    }
 }
 
 .logo {

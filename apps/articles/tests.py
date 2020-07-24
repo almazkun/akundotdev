@@ -142,7 +142,7 @@ class TestHomepageListView(TestCase):
         obj_is_pub = Article.objects.all().is_published()
         test_tool = Tool.objects.get(name=self.test_tool["name"])
         test_pro = Product.objects.get(name=self.test_pro["name"])
-        
+
         response = self.client.get(reverse("home"))
 
         self.assertQuerysetEqual(
@@ -219,21 +219,38 @@ class TestArticleDetailView(TestCase):
 
 
 class TestTagDetailView(TestCase):
+    """Test Tag detail view.
+    Make sure that related objects are queried
+    """
+
     def setUp(self):
-        self.test_tag = test_tag
         self.test_user = normal_user
         self.test_article = test_article
+        self.test_tag = test_tag
+        self.test_tool = test_tool
+        self.test_pro = test_product
 
         CustomUser.objects.create_user(**normal_user)
         self.test_article["author"] = CustomUser.objects.get(
             username=self.test_user["username"]
         )
         article = Article.objects.create(**self.test_article)
-        article.tags.add(Tag.objects.create(**self.test_tag))
-        article.save()
+        tag = Tag.objects.create(**self.test_tag)
+        tool = Tool.objects.create(**self.test_tool)
+        product = Product.objects.create(**self.test_pro)
 
-    def test_article_detail(self):
-        article = Article.objects.filter(tags__tag_name=self.test_tag["tag_name"])
+        article.tags.add(tag)
+        article.save()
+        tool.tags.add(tag)
+        tool.save()
+        product.tags.add(tag)
+        product.save()
+
+    def test_tag_detail(self):
+        articles = Article.objects.filter(tags__tag_name=self.test_tag["tag_name"])
+        tools = Tool.objects.filter(tags__tag_name=self.test_tag["tag_name"])
+        products = Product.objects.filter(tags__tag_name=self.test_tag["tag_name"])
+
         response = self.client.get(
             reverse("tag_detail", kwargs={"slug": self.test_tag["slug"]})
         )
@@ -248,7 +265,9 @@ class TestTagDetailView(TestCase):
         self.assertEqual(
             response.context["tag"].source_link, self.test_tag["source_link"]
         )
-        self.assertEqual(str(response.context["articles"]), str(article))
+        self.assertEqual(str(response.context["articles"]), str(articles))
+        self.assertEqual(str(response.context["tools"]), str(tools))
+        self.assertEqual(str(response.context["products"]), str(products))
         self.assertTemplateUsed(response, "articles/tag_detail.html")
 
     def test_main_author(self):
