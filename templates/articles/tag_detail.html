@@ -20,25 +20,21 @@
                     {% for article in articles %}
                         {% include 'includes/list_article.html' %}
                     {% endfor %}
-                    <hr class="">
                 </div>
             {% endif %}
             {% if tools %}
                 <div class="my-4 py-4">
                     <h2 class="font-weight-bold">{{ tag.tag_name }} in Tools</h2>
-                    {% for tool in tools %}
-                        {% include 'includes/list_tool.html' %}
-                    {% endfor %}
-                    <hr class="">
+                    {% include 'includes/list_tool.html' %}
+
                 </div>
             {% endif %}
             {% if products %}
                 <div class="my-4 py-4">
                     <h2 class="font-weight-bold">{{ tag.tag_name }} in Shop</h2>
-                    {% for tool in tools %}
-                        {% include 'includes/list_tool.html' %}
+                    {% for product in products %}
+                        {% include 'includes/list_product.html' %}
                     {% endfor %}
-                    <hr class="">
                 </div>
             {% endif %}
         </div>
