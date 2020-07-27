@@ -6,6 +6,11 @@
             <div class="my-4">
                 <h1 class="display-4">{{ article.title }}</h1>
                 <p class="lead">{{ article.description }}<p>
+                <div class="mb-2">
+                    {% for tag in article.tags.all %}
+                        <a href="{{tag.get_absolute_url}}" class="text-muted">#{{tag.tag_name}}</a>
+                    {% endfor %}
+                </div>
                 <div class="d-flex mb-2 align-items-center">
                     <a href="{{ article.get_absolute_url }}"><img class="rounded-circle author_photo" src="{{article.author.photo}}"></a>
                     <div class="ml-2 text-muted small">
@@ -26,7 +31,7 @@
                 </div>
                 <div class="mb-2">
                     {% for tag in article.tags.all %}
-                        <a href="{{tag.get_absolute_url}}" class="badge badge-secondary">{{tag.tag_name}}</a>
+                        <a href="{{tag.get_absolute_url}}" class="text-muted">#{{tag.tag_name}}</a>
                     {% endfor %}
                 </div>
             </div>

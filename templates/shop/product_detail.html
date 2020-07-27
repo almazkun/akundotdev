@@ -5,16 +5,23 @@
         <div class="container">
             <div class="my-4">
                 <h1 class="display-4">{{ product.name }}</h1>
-                <div class="p-2 border rounded mb-3">
-                    <div class="embed-responsive embed-responsive-21by9">
-                        <img class="embed-responsive-item" src="{{product.img_link}}" style="object-fit: contain; object-position: center;">
+                <p class="lead">{{ product.description }}</p>
+                <hr class="">
+                <div class="d-flex justify-content-center mb-2"> 
+                    <div class="col-6 col-sm-6 p-0 rounded border border-dark">
+                        <div class="embed-responsive embed-responsive-1by1">
+                            <div class="embed-responsive-item display-4 d-flex justify-content-center   ">
+                                <div class="align-self-center text-underline"><u>{{product.abbr}}</u></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <p class="lead">{{ product.description }}</p>
+                <p class="font-weight-bold">${{ product.price }}</p>
+                <p>{{ product.full_description|safe|linebreaksbr }}</p>
                 <a href="{{product.link}}" target="_blank"><div class="btn btn-outline-dark mb-3">Try it</div></a>
                 <hr class="">
                 {% for tag in product.tags.all %}
-                    <a href="{{tag.get_absolute_url}}" class="badge badge-secondary">{{tag.tag_name}}</a>
+                    <a href="{{tag.get_absolute_url}}" class="text-muted">#{{tag.tag_name}}</a>
                 {% endfor %}
             </div>
         </div>

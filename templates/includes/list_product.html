@@ -1,23 +1,15 @@
-
 <div class="row">
-    {% for tool in tools %}
-        <div class="mb-2 col-6 text-center">
-            <a href="{{ product.get_absolute_url }}">
-                <div class="bg-black mb-2 p-1">
-                    <div class="bg-white p-1">
-                        <div class="bg-black p-1">
-                            <div class="bg-white p-4 embed-responsive embed-responsive-1by1">
-                                <div class="embed-responsive-item display-4 d-flex justify-content-center   ">
-                                    <div class=" align-self-center ">{{product.abbr}}</div>
-                                </div>
-                            </div>
+    {% for product in products %}
+        <div class="col-6 p-2">
+            <div class="text-center rounded shadow-hover p-2 border border-dark">
+                <a href="{{ product.get_absolute_url }}">
+                    <div class="embed-responsive embed-responsive-1by1">
+                        <div class="embed-responsive-item display-4 d-flex justify-content-center   ">
+                            <div class=" align-self-center "><u>{{product.abbr}}</u></div>
                         </div>
                     </div>
-                </div>
-            </a>
-            <div class="mb-2">{{ product.description }}</div>
-            <div class="mb-2">
-                <a href="{{ product.get_absolute_url }}"><div class="btn btn-outline-dark">Order Now</div></a>
+                    <div class="font-italic text-decoration-none">{{ product.price }}</div>
+                </a>
             </div>
         </div>
     {% endfor %}

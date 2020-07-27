@@ -1,16 +1,10 @@
-<div class="mb-4">
-    <a href="{{ article.get_absolute_url }}"><h3>{{ article.title }}</h3></a>
-    <a href="{{ article.get_absolute_url }}"><div class="mb-2">{{ article.description }}</div></a>
-    <div class="mb-2">
-        {% for tag in article.tags.all %}
-            <a href="{{tag.get_absolute_url}}" class="badge badge-secondary">{{tag.tag_name}}</a>
-        {% endfor %}
-    </div>
-    <div class="d-flex mb-2 align-items-center">
-            <a href="{% url 'about' %}"><img class="rounded-circle author_photo" src="{{article.author.photo}}"></a>
-            <div class="ml-2 text-muted small">
-                <a href="{% url 'about' %}"><div>{{article.author.first_name}} {{article.author.last_name}}</div></a>
-                <div>
+<div class="row">
+    {% for article in articles %}
+    <div class="col-12 p-2">
+        <div class="p-2 rounded shadow-hover">
+            <div class="d-flex mb-2 text-muted small ">
+                <a href="{% url 'about' %}"><div>By {{article.author.first_name}} {{article.author.last_name}},&nbsp;</div></a>
+                <div>on 
                     {% if article.created_on < article.updated_on %}
                         {{ article.updated_on|date:'M d, Y' }}
                     {% else %}
@@ -18,5 +12,14 @@
                     {% endif %}
                 </div>
             </div>
+            <a href="{{ article.get_absolute_url }}"><h3>{{ article.title }}</h3></a>
+            <div class="mb-2">{{ article.description }}</div>
+            <div class="mb-2">
+                {% for tag in article.tags.all %}
+                    <a href="{{tag.get_absolute_url}}" class="small">#{{tag.tag_name}}</a>
+                {% endfor %}
+            </div>
+        </div>
     </div>
+    {% endfor %}
 </div>
