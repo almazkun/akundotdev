@@ -1,9 +1,24 @@
-<div class="mb-4">
-    <a href="{{ product.get_absolute_url }}"><h3>{{ product.name }}</h3></a>
-    <a href="{{ product.get_absolute_url }}"><div class="mb-2">{{ product.description }}</div></a>
-    <div class="mb-2">
-        {% for tag in product.tags.all %}
-            <a href="{{tag.get_absolute_url}}" class="badge badge-secondary">{{tag.tag_name}}</a>
-        {% endfor %}
-    </div>
+
+<div class="row">
+    {% for tool in tools %}
+        <div class="mb-2 col-6 text-center">
+            <a href="{{ product.get_absolute_url }}">
+                <div class="bg-black mb-2 p-1">
+                    <div class="bg-white p-1">
+                        <div class="bg-black p-1">
+                            <div class="bg-white p-4 embed-responsive embed-responsive-1by1">
+                                <div class="embed-responsive-item display-4 d-flex justify-content-center   ">
+                                    <div class=" align-self-center ">{{product.abbr}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <div class="mb-2">{{ product.description }}</div>
+            <div class="mb-2">
+                <a href="{{ product.get_absolute_url }}"><div class="btn btn-outline-dark">Order Now</div></a>
+            </div>
+        </div>
+    {% endfor %}
 </div>

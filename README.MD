@@ -59,3 +59,6 @@ git clone https://github.com/almazkun/akundotdev.git
 sudo yum install -y mod24_ssl
 sudo ./certbot-auto --debug -v --server https://acme-v02.api.letsencrypt.org/directory certonly -d akun.dev
 ```
+IT Consulting · Web Development · Custom Software Development · Application Development
+Web Development · Business Analytics · Database Development · Custom Software Development · Information Management · User Experience Design (UED)
+Web Development · Custom Software Development · Application Development

@@ -78,7 +78,7 @@ a:hover {
     position:relative;
     overflow:hidden;
     padding-bottom:100%;
-    height: 278px;
+    max-height: 278px;
 }
 .tool-image img{
       position: absolute;
