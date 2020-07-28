@@ -5,20 +5,20 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('shop', '0001_initial'),
-    ]
+    dependencies = [("shop", "0001_initial")]
 
     operations = [
         migrations.AddField(
-            model_name='product',
-            name='full_description',
-            field=models.TextField(default='full description', verbose_name='full_description'),
+            model_name="product",
+            name="full_description",
+            field=models.TextField(
+                default="full description", verbose_name="full_description"
+            ),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='product',
-            name='abbr',
-            field=models.CharField(max_length=4, verbose_name='Abbreviation'),
+            model_name="product",
+            name="abbr",
+            field=models.CharField(max_length=4, verbose_name="Abbreviation"),
         ),
     ]

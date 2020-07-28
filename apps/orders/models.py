@@ -11,27 +11,27 @@ class Order(models.Model):
     paid = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    product = models.ForeignKey(Product, related_name="order_item", on_delete=models.CASCADE)
-    
+    product = models.ForeignKey(
+        Product, related_name="order_item", on_delete=models.CASCADE
+    )
+
     class Meta:
         ordering = ("-created_at",)
         verbose_name = "Order"
         verbose_name_plural = "Orders"
-        
+
     def __str__(self):
         return f"Order #{self.id}"
-    
+
     def send_email(self):
         subject = "Order on Akun.dev"
         message = f"Dear {self.name}!\n\nThank you for ordering {self.product}.\nWe will contact you shortly!\n\nBest regards,\nAlmaz Kunpeissov"
         from_email = "hello@akun.dev"
         recipient_list = [self.email, "hello@akun.dev"]
         send_mail(
-            subject = subject,
-            message = message,
-            from_email = from_email,
-            recipient_list = recipient_list,
+            subject=subject,
+            message=message,
+            from_email=from_email,
+            recipient_list=recipient_list,
             fail_silently=True,
         )
-
-

@@ -8,26 +8,45 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-        ('shop', '0002_auto_20200727_1759'),
-    ]
+    dependencies = [("shop", "0002_auto_20200727_1759")]
 
     operations = [
         migrations.CreateModel(
-            name='Order',
+            name="Order",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=150, verbose_name='Customer Name')),
-                ('email', models.CharField(max_length=150, verbose_name='Customer Email')),
-                ('paid', models.BooleanField(default=False)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='order_item', to='shop.Product')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(max_length=150, verbose_name="Customer Name"),
+                ),
+                (
+                    "email",
+                    models.CharField(max_length=150, verbose_name="Customer Email"),
+                ),
+                ("paid", models.BooleanField(default=False)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="order_item",
+                        to="shop.Product",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Order',
-                'verbose_name_plural': 'Orders',
-                'ordering': ('-created_at',),
+                "verbose_name": "Order",
+                "verbose_name_plural": "Orders",
+                "ordering": ("-created_at",),
             },
-        ),
+        )
     ]
