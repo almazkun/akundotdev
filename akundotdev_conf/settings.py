@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "apps.articles",
     "apps.tools",
     "apps.shop",
+    "apps.orders",
 ]
 
 MIDDLEWARE = [
@@ -101,7 +102,7 @@ try:
         }
     }
 
-except:
+except ModuleNotFoundError:
 
     DATABASES = {
         "default": {
@@ -156,3 +157,23 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/topics/auth/customizing/#substituting-a-custom-user-model
 AUTH_USER_MODEL = "users.CustomUser"
+
+
+
+
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+EMAIL_HOST = "smtp.yandex.ru"
+
+EMAIL_PORT = 587
+
+try:
+    from email_secret import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
+
+except ModuleNotFoundError:
+    EMAIL_HOST_USER = ""
+
+    EMAIL_HOST_PASSWORD = ""
+
+EMAIL_USE_TLS = True

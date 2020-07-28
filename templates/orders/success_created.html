@@ -1,0 +1,15 @@
+{% extends "_base.html" %}
+
+
+{% block main_content %}
+    <section id="main" class="main">
+        <div class="container">
+            <div class="my-4">
+                <h1 class="display-4">Thank you!</h1>
+                <p class="lead">Your order successfully created.</p>
+                <hr class="">
+                <a class="btn btn-outline-dark" href="{% url "home" %}">Back to Home</a>
+            </div>
+        </div>
+    </section>
+{% endblock main_content %}
