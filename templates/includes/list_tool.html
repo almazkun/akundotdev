@@ -1,18 +1,12 @@
 <div class="row">
     {% for tool in tools %}
         <div class="col-6 p-2">
-            <div class="p-2 rounded shadow-hover">
-                <div class="tool-image mb-2">
+            <div class="p-2 rounded shadow-hover text-center">
+                <a href="{{ tool.get_absolute_url }}"><div class="tool-image mb-2">
                     <img src="{{tool.img_link}}">
-                </div>
+                </div></a>
                 <a href="{{ tool.get_absolute_url }}"><h3>{{ tool.name }}</h3></a>
-                <div>{{ tool.description }}</div>
-                <div  class="mb-2">
-                    {% for tag in tool.tags.all %}
-                        <a href="{{tag.get_absolute_url}}" class="small mb-2">#{{tag.tag_name}}</a>
-                    {% endfor %}
-                </div>
-                <a class="btn btn-outline-dark mb-2" href="{{ tool.get_absolute_url }}">Read more...</a>
+                <div class="mb-2">{{ tool.description }}</div>
             </div>
         </div>
     {% endfor %}
