@@ -47,6 +47,14 @@ docker-compose -f docker-compose.prod.yml exec web python manage.py collectstati
 
 /etc/httpd/conf.d/akun.dev.conf
 
+PATH=$PATH:~/opt/bin
+killall gunicorn
+
+sudo rm -rf staticfiles
+sudo mkdir staticfiles
+sudo chmod 777 staticfiles
+python36 manage.py collectstatic
+sudo chmod 755 staticfiles
 
 ```bash
 gunicorn -b 127.0.0.1:8000 -w 3 akundotdev_conf.wsgi --daemon
