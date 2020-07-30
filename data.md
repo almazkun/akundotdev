@@ -56,3 +56,59 @@ http://shi.pper.men/ak
 #Url Shortener
 #AWS
 #YOURLS
+
+
+# WEDE
+This is Your New Business Corporate website, Landing website, Marketing Campaign website, Portfolio website.
+## Features:
+Unlimited pages.
+Mobile first, fully responsive.
+Lightning fast.
+SEO Friendly and CDN.
+Secure SSL encryption.
+Google Analytics and Google Ads.
+Free corporate email address (i.e. john@yourdomain.com).
+Free online Chat.
+Free Hosting.
+Free Users activity Heatmap.
+
+# WEAP 
+This is a Web Application that will make things done. It could be your Online Shopping site, Social Network site, Blog, Dashboard, Reservation system, Software as a Service (SaaS).
+## Features:
+In Python / Django.
+Well tested and Secure.
+Unlimited pages.
+Mobile first, fully responsive.
+SEO Friendly and CDN.
+Secure SSL encryption.
+Google Analytics and Google Ads.
+Affordable Hosting.
+Unlimited Database storage
+Free corporate email address (i.e. john@yourdomain.com).
+Free online Chat.
+Free Users activity Heatmap.
+
+
+# CUSO
+This mean designing, creating, deploying and maintaining Custom software which will do exactly what you need.
+# Things like:
+Automation and monitoring
+Integrating with APIs
+Synchronization and integration with third parties
+Business process automation, workflows
+Business intelligence, data mining
+Order and inventory management
+ERP, CRM
+
+
+
+HTML5 / CSS3
+UI / UX Design
+Bootstrap 4
+DigitalOcean / GitHub Pages
+Cloudflare DNS / CDN
+Nginx / Apache / Vesta CP
+Corporate e-mail server
+SSL/TLS Certificates / Let's Encrypt
+Online Chat
+Google Analytics, Google Ads
