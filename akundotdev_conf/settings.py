@@ -177,11 +177,16 @@ except ModuleNotFoundError:
 EMAIL_USE_TLS = True
 
 # CSRF configuration
+
 CSRF_COOKIE_SECURE = True
 
 SESSION_COOKIE_SECURE = True
 
-SECURE_SSL_REDIRECT = True
+try:
+    import secret
+    SECURE_SSL_REDIRECT = secret.SECURE_SSL_REDIRECT
+except ModuleNotFoundError:
+    SECURE_SSL_REDIRECT = False
 
 USE_X_FORWARDED_HOST = True
 
