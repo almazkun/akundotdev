@@ -32,7 +32,7 @@ except ModuleNotFoundError:
     DEBUG = True
 
 
-ALLOWED_HOSTS = ["127.0.0.1", "akun.dev", "18.217.134.213", "*"]
+ALLOWED_HOSTS = ["127.0.0.1", "akun.dev", "18.217.134.213"]
 
 
 # Application definition
