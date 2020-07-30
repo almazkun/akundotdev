@@ -176,6 +176,8 @@ except ModuleNotFoundError:
 EMAIL_USE_TLS = True
 
 
-CSRF_COOKIE_DOMAIN = ['*.akun.dev', '127.0.0.1']
+CSRF_COOKIE_DOMAIN = ["*.akun.dev", "127.0.0.1"]
 
 CSRF_COOKIE_SECURE = True
+
+CSRF_TRUSTED_ORIGINS = ["akun.dev"]
