@@ -31,18 +31,49 @@ docker-compose -f docker-compose.prod.yml exec web python manage.py collectstati
     ServerAdmin me@akun.dev
     DocumentRoot /var/www/html/akun.dev/
     ServerName akun.dev
+    ServerAlias *.akun.dev
 
     <Directory /var/www/html/akun.dev/akundotdev_conf>
         <Files wsgi.py>
             Require all granted
         </Files>
     </Directory>
-    WSGIScriptAlias / /var/www/html/akun.dev/akundotdev_conf/wsgi.py
-    
+    <Location />
+        ProxyPass / http://127.0.0.1:8000/
+        ProxyPassReverse / http://127.0.0.1:8000/
+    </location>
+
     ErrorLog /var/log/httpd/akun.dev.com-error_log
     CustomLog /var/log/httpd/akun.dev.com-access_log common
 </VirtualHost>
 
+<VirtualHost *:443>
+    ServerAdmin me@akun.dev
+    DocumentRoot /var/www/html/akun.dev/
+    ServerName akun.dev
+    ServerAlias *.akun.dev
+    RequestHeader set X-Forwarded-Proto 'https' env=HTTPS
+
+    SSLEngine on
+    SSLProtocol all -SSLv2
+    SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5
+    SSLCertificateFile "/etc/letsencrypt/live/akun.dev/cert.pem"
+    SSLCertificateKeyFile "/etc/letsencrypt/live/akun.dev/privkey.pem"
+
+    <Directory /var/www/html/akun.dev/akundotdev_conf>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+
+    <Location />
+        ProxyPass / http://127.0.0.1:8000/
+        ProxyPassReverse / http://127.0.0.1:8000/
+    </location>
+
+    ErrorLog /var/log/httpd/akun.dev.com-error_log
+    CustomLog /var/log/httpd/akun.dev.com-access_log common
+</VirtualHost>
 ```
 
 /etc/httpd/conf.d/akun.dev.conf

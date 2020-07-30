@@ -176,8 +176,6 @@ except ModuleNotFoundError:
 EMAIL_USE_TLS = True
 
 
-CSRF_COOKIE_DOMAIN = ["*.akun.dev", "127.0.0.1"]
-
-CSRF_COOKIE_SECURE = True
+USE_X_FORWARDED_HOST = True
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
