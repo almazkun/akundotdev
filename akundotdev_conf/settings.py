@@ -159,6 +159,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 AUTH_USER_MODEL = "users.CustomUser"
 
 
+# Email Configuration
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 EMAIL_HOST = "smtp.yandex.ru"
@@ -175,7 +176,13 @@ except ModuleNotFoundError:
 
 EMAIL_USE_TLS = True
 
+# CSRF configuration
+CSRF_COOKIE_SECURE = True
+
+SESSION_COOKIE_SECURE = True
+
+SECURE_SSL_REDIRECT = True
 
 USE_X_FORWARDED_HOST = True
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
